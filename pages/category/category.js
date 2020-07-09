@@ -1,6 +1,8 @@
 // 0 引入 用来发送请求的 方法
 import { request } from
   "../../requset/request.js"
+// import regeneratorRuntime from
+//   '../../lib/runtime/runtime';
 Page({
 
   /**
@@ -55,7 +57,8 @@ Page({
         this.Cates = Cates.data;
 
         //构造左侧的大菜单数据
-        let leftMenuList = this.Cates.map(v => v.cat_name);
+        let leftMenuList = this.Cates.map(v => v.Name);
+        // let leftMenuList = this.Cates.map(v => v.cat_name);
         //构造右侧的商品数据
         let rigthContent = this.Cates[0].children;
 
@@ -72,24 +75,50 @@ Page({
   },
 
   //获取 分类数据
-  getCates() {
-    request({ url: 'https://api-hmugo-web.itheima.net/api/public/v1/categories' })
-      .then(res => {
-        this.Cates = res.data.message
+  async getCates() {
+    // request({ url: 'https://api-hmugo-web.itheima.net/api/public/v1/categories' })
+    // request({ url: 'http://localhost:61798/api/ProductCategory' })
+    // .then(res => {
+    //   console.log(res)
 
-        //把接口的数据存入到本地储存中
-        wx.setStorageSync('cates', { time: Date.now(), data: this.Cates })
+    //   this.Cates = res.data.Data
 
-        //构造左侧的大菜单数据
-        let leftMenuList = this.Cates.map(v => v.cat_name);
-        //构造右侧的商品数据
-        let rigthContent = this.Cates[0].children;
+    //   //把接口的数据存入到本地储存中
+    //   wx.setStorageSync('cates', { time: Date.now(), data: this.Cates })
 
-        this.setData({
-          leftMenuList,
-          rigthContent
-        })
-      })
+    //   //构造左侧的大菜单数据
+    //   // let leftMenuList = this.Cates.map(v => v.cat_name);
+    //   let leftMenuList = this.Cates.map(v => v.Name);
+    //   //构造右侧的商品数据
+    //   let rigthContent = this.Cates[0].children;
+
+    //   this.setData({
+    //     leftMenuList,
+    //     rigthContent
+    //   })
+    // })
+
+    // 1 使用es7的async await来发送请求
+    const res = await request({ url: "/ProductCategory" })
+    // const res = await request({ url: "https://api-hmugo-web.itheima.net/api/public/v1/categories" })
+    console.log(res)
+
+    this.Cates = res
+
+    //把接口的数据存入到本地储存中
+    wx.setStorageSync('cates', { time: Date.now(), data: this.Cates })
+
+    //构造左侧的大菜单数据
+    // let leftMenuList = this.Cates.map(v => v.cat_name);
+    let leftMenuList = this.Cates.map(v => v.Name);
+
+    //构造右侧的商品数据
+    let rigthContent = this.Cates[0].children;
+
+    this.setData({
+      leftMenuList,
+      rigthContent
+    })
   },
 
   //左侧菜单的点击事件

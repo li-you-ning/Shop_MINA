@@ -23,9 +23,9 @@ export const request = (params) => {
     wx.request({
       ...params,
       header: header,
-      url: baseUrl + params.url,
+    //   url: baseUrl + params.url,
       success: (result) => {
-        resolve(result.data.Data);
+        resolve(result.data.message);
       },
       fail: (err) => {
         reject(err);
@@ -40,23 +40,3 @@ export const request = (params) => {
     });
   })
 }
-
-
-
-
-// export const request = (params) => {
-//     // 定义公共的url
-//     // const baseUrl = "http://localhost:61798/api";
-//     return new Promise((resolve, reject) => {
-//         wx.request({
-//             ...params,
-//             // url:baseUrl+params.url,
-//             success: (result) => {
-//                 resolve(result);
-//             },
-//             fail: (err) => {
-//                 reject(err);
-//             }
-//         });
-//     })
-// }

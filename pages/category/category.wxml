@@ -20,10 +20,11 @@
             wx:for="{{rigthContent}}"
             wx:for-index="index1"
             wx:for-item="item1"
-            wx:key="cat_id">
+            wx:key="ID">
+            <!-- wx:key="cat_id"> -->
                 <view class="goods_title">
                     <text class="delimiter">/</text>
-                    <text class="title">{{item1.cat_name}}</text>
+                    <text class="title">{{item1.Name}}</text>
                     <text class="delimiter">/</text>
                 </view>
                 <view class="goods_list">
@@ -31,9 +32,14 @@
                     wx:for="{{item1.children}}"
                     wx:for-index="index2"
                     wx:for-item="item2"
-                    wx:key="cat_id">
-                        <image src="{{item2.cat_icon}}" mode="widthFix" />
-                        <view class="goods_name">{{item2.cat_name}}</view>
+                    wx:key="ID"
+                    url="/pages/goods_list/goods_list?KeyWords={{item2.KeyWords}}"
+                    >
+                    <!-- wx:key="cat_id" -->
+                        <!-- <image src="{{item2.cat_icon}}" mode="widthFix" /> -->
+                        <image src="{{item2.Img}}" mode="widthFix" />
+                        <!-- <view class="goods_name">{{item2.cat_name}}</view> -->
+                        <view class="goods_name">{{item2.Name}}</view>
                           
                     </navigator>
                 </view>
