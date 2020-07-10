@@ -1,6 +1,6 @@
 // 0 引入 用来发送请求的 方法
 import { request } from
-  "../../requset/index.js"
+  "../../request/index.js"
 Page({
 
   /**

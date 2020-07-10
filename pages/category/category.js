@@ -1,6 +1,6 @@
 // 0 引入 用来发送请求的 方法
 import { request } from
-  "../../requset/request.js"
+  "../../request/request.js"
 // import regeneratorRuntime from
 //   '../../lib/runtime/runtime';
 Page({
@@ -99,7 +99,7 @@ Page({
     // })
 
     // 1 使用es7的async await来发送请求
-    const res = await request({ url: "/ProductCategory" })
+    const res = await request({ url: "/ProductCategory/getall" })
     // const res = await request({ url: "https://api-hmugo-web.itheima.net/api/public/v1/categories" })
     console.log(res)
 

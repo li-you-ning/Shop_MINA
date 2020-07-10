@@ -10,7 +10,7 @@
         <navigator class="goods_item"
         wx:for="{{goodsList}}"
         wx:key="ID"
-        url="/pages/goods_detail/index?goods_id={{item.ID}}"
+        url="/pages/goods_detail/goods_detail?ID={{item.ID}}"
         >
             <!-- 左侧 图片容器 -->
             <view class="goods_img_wrap">

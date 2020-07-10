@@ -1,2 +1,82 @@
-<!--pages/goods_detail/goods_detail.wxml-->
-<text>pages/goods_detail/goods_detail.wxml</text>
+<view class="detail_swiper" >
+    <swiper 
+    autoplay="{{true}}"
+    indicator-dots="{{true}}"
+    circular="{{true}}"
+    class="">
+        <swiper-item class="" 
+        wx:for="{{goodsdetail.ProductSlideImgs}}"
+        wx:key="index"
+        bindtap="handlePrevewImage"
+        data-url="{{item}}"
+        >
+        <image class="" src="{{item}}" mode="widthFix">
+            
+        </image>
+            
+        </swiper-item>
+    </swiper>
+</view>
+<view class="goods_price">
+    ￥{{goodsdetail.Price}}
+</view>
+<view class="goods_name_row" >
+    <view class="goods_name" >
+        {{goodsdetail.ProductTitle}}
+    </view>
+    <view class="goods_collect">
+        <text class="iconfont icon-shoucang" selectable="false" space="false" decode="false">
+            
+        </text>
+        <view class="collect_text" >
+            收藏
+        </view>
+    </view>
+</view>
+<view class="goods_info" hover-class="none" hover-stop-propagation="false">
+    <view class="goods_info_title">图文详情</view>
+    <view class="goods_info_content"
+     wx:for="{{goodsdetail.ProductDetailImg}}"
+    wx:key="index"
+    >
+    <view class="image" hover-class="none" hover-stop-propagation="false">
+        
+    </view>
+    <image class="" src="{{item}}" mode="widthFix">
+            
+        </image>
+    </view>
+</view>
+<view class="btm_tool" hover-class="none" hover-stop-propagation="false">
+    <view class="tool_item" hover-class="none" hover-stop-propagation="false">
+        <view class="iconfont icon-kefu" hover-class="none" hover-stop-propagation="false">
+            
+        </view>
+        <view class="" hover-class="none" hover-stop-propagation="false">
+            客服
+        </view>
+    </view>
+    <view class="tool_item" hover-class="none" hover-stop-propagation="false">
+        <view class="iconfont icon-yixianshi-" hover-class="none" hover-stop-propagation="false">
+            
+        </view>
+        <view class="" hover-class="none" hover-stop-propagation="false">
+            分享
+        </view>
+    </view>
+    <view class="tool_item" hover-class="none" hover-stop-propagation="false">
+        <view class="iconfont icon-yixianshi-">
+            
+        </view>
+        <view class="" hover-class="none" hover-stop-propagation="false">
+            购物车
+        </view>
+    </view>
+    <view class="tool_item btn_cart" hover-class="none" hover-stop-propagation="false">
+        加入购物车
+    </view>
+    <view class="tool_item btn_buy" hover-class="none" hover-stop-propagation="false">
+        立即购买
+    </view>
+</view>
+

@@ -25,7 +25,7 @@
  */
 
 import { request } from
-  "../../requset/request.js"
+  "../../request/request.js"
 Page({
   data: {
     tabs: [
@@ -66,7 +66,7 @@ Page({
 
   // 获取商品列表数据
   async getGoodsList() {
-    const res = await request({ url: "/Product", method: 'post', data: this.QueryParams });
+    const res = await request({ url: "/Product/PostPager", method: 'post', data: this.QueryParams });
     console.log(res)
 
     const productList = res.data
