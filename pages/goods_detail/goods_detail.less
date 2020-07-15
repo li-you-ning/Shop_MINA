@@ -1,108 +1,192 @@
-page{
-  padding-bottom: 90rpx;
+/* pages/productdetail/productdetail.wxss */
+page {
+
+  background-color: #f2f2f2;
 }
-.detail_swiper{
-  swiper{
+
+.detail_swiper {
+
+  swiper {
+
     height: 65vw;
+    background-color: #ffffff;
     text-align: center;
-    image{
+
+    image {
+
       width: 60%;
     }
   }
 }
-.goods_price{
-  padding: 15rpx;
-  font-size: 32rpx;
-  font-weight: 600;
-  color: var(--themeColor);
-}
-.goods_name_row{
-  border-top: 5rpx solid #dedede;
-  border-bottom: 5rpx solid #dedede;
-  padding: 10rpx 0;
-  display: flex;
-  .goods_name{
-    flex: 5;
-    color: #000;
-    font-size: 30rpx;
-    padding: 0 10rpx;
 
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp:2;
-  }
-  .goods_collect{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-left: 1rpx solid #000;
-    .iconfont{}
-    .icon-shoucang1{
-      color: orangered;
-    }
-    .collect_text{}
-  }
-}
+.price_name_group {
 
-.goods_info{
-  .goods_info_title{
+  background-color: #ffffff;
+
+  .price {
+
+    padding: 15rpx;
     font-size: 32rpx;
     color: var(--themeColor);
     font-weight: 600;
-    padding: 20rpx;
   }
-  .goods_info_content{}
+
+  .product_name_group {
+
+    display: flex;
+    padding: 10rpx 0;
+
+    .product_name {
+
+      flex: 5;
+      padding: 20rpx;
+      font-size: 35rpx;
+      font-weight: 800;
+    }
+
+    .product_collect {
+
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-left: 1rpx solid #e9e9e9;
+
+      .collect_text {}
+    }
+
+  }
+
 }
 
-.btm_tool{
-  border-top: 1rpx solid #ccc;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 90rpx;
-  background-color: #fff;
+.sku_info_group {
+
   display: flex;
-  .tool_item{
-    flex: 1;
+  justify-content: space-between;
+  background-color: #ffffff;
+  margin: 30rpx 0;
+
+  .sku_info_left {
+
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 24rpx;
-    position: relative;
-    button{
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
+
+    .sku_title {
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30rpx;
+      color: #999999;
+
+    }
+
+    .sku_info {
+
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      color: #333;
+
     }
   }
-  .btn_cart{
-    flex: 2;
+
+  .sku_info_right {
+
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #ffa500;
-    color: #fff;
-    font-size: 30rpx;
-    font-weight: 600;
+    padding-right: 30rpx;
+    color: #cccccc;
+
+
   }
-  .btn_buy{
-    flex: 2;
+}
+
+.skus {
+
+  padding: 50rpx 20rpx;
+
+  .sku_group {
+
+    padding: 20rpx;
+
+    .sku_name {
+
+      font-weight: 600;
+
+
+    }
+
+    .sku_values {
+
+      display: flex;
+      flex-wrap: wrap;
+      padding-top: 20rpx;
+
+      .sku_value {
+
+        padding: 10rpx 30rpx;
+        background-color: #f2f2f2;
+        border-radius: 10px;
+        margin: 0 15rpx;
+
+
+      }
+
+      .active {
+
+        color: rgb(242, 39, 12);
+        background-color: rgb(252, 237, 235);
+        border: 2rpx solid var(--themeColor);
+
+      }
+    }
+
+
+  }
+}
+
+// 上拉菜单
+
+.goods_sku {
+  margin: 20rpx;
+
+  .header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #eb4450;
-    color: #fff;
-    font-size: 30rpx;
-    font-weight: 600;
+
+    .main_img {
+      flex: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      image {
+        width: 80%;
+      }
+    }
+
+    .goods_choose_info {
+      flex: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 30rpx;
+
+
+
+      .goods_pricr {
+        color: #f2260c;
+        font-size: 34rpx;
+        font-weight: 600;
+      }
+
+      .goods_choose_skus {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+    }
   }
 }
