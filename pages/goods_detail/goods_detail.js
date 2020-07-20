@@ -11,7 +11,9 @@ Page({
     sku_show: false,
     skus: [],
     proSkus: [],
-    skuDisInfo: ""
+    skuDisInfo: "",
+    skuImg: "",
+    skuPrice: ""
   },
 
   /**
@@ -38,6 +40,10 @@ Page({
     res.Product.ProductSlideImgs = JSON.parse(res.Product.ProductSlideImgs)
     res.Product.ProductDetailImg = JSON.parse(res.Product.ProductDetailImg)
     res.Product.ProductSkuValues = JSON.parse(res.Product.ProductSkuValues)
+
+    for (let index = 0; index < res.Skus.length; index++) {
+      res.Skus[index].ProductSku1 = JSON.parse(res.Skus[index].ProductSku1)
+    }
     let skuDisInfo = "请选择 "
     res.Product.ProductSkuValues.forEach(v => {
 
@@ -87,15 +93,43 @@ Page({
   },
   handleSkuChange(event) {
     console.log(event)
-    const { attrname, attrvalue } = event.currentTarget.dataset
+    const { attrname, attrvalue, index } = event.currentTarget.dataset
     let { product } = this.data
+    let { skus } = this.data
+    let price = 0;
+    let selectedValue = [];
+
+    //遍历product
     product.ProductSkuValues.forEach(v => {
 
       if (v.name == attrname) {
         v.selectedValue = attrvalue
+
+        //判断是否是图片sku
+        if (v.isImg == 1) {
+          this.setData({
+            skuImg: v.values[index].img.CloudUrl,
+          })
+        }
       }
+      //把已经选中的选项存入
+      selectedValue.push(v.selectedValue);
     })
-    this.setData({ product })
+
+    skus.forEach(v => {
+      v.skuValue=[]
+      v.ProductSku1.forEach(_v=>{
+        v.skuValue.push(_v.value)
+      })
+      if (JSON.stringify(v.skuValue) === JSON.stringify(selectedValue)) {
+        price = v.Price;
+      }
+    });
+
+    this.setData({
+      product,
+      skuPrice: price
+    })
 
 
   },

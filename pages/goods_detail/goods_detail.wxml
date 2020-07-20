@@ -2,7 +2,7 @@
 <view class="detail_swiper">
 	<swiper indicator-dots autoplay circular>
 		<swiper-item wx:for="{{product.ProductSlideImgs}}" wx:key="*this">
-			<image src="{{item}}" mode="widthFix"></image>
+			<image src="{{item.CloudUrl}}" mode="widthFix"></image>
 		</swiper-item>
 	</swiper>
 </view>
@@ -27,10 +27,10 @@
 	<view class="goods_sku">
 		<view class="header">
 			<view class="main_img">
-				<image src="{{product.ProductMainImg}}" mode="widthFix"></image>
+				<image src="{{skuImg?skuImg:product.ProductMainImg[0].CloudUrl}}" mode="widthFix"></image>
 			</view>
 			<view class="goods_choose_info">
-				<view class="goods_pricr">￥{{product.Price}}</view>
+				<view class="goods_pricr">￥{{skuPrice?skuPrice:product.Price}}</view>
 				<view class="goods_choose_skus">{{product.ProductTitle}}</view>
 			</view>
 		</view>
@@ -39,7 +39,15 @@
 		<view class="sku_group" wx:for="{{product.ProductSkuValues}}" wx:key="id">
 			<view class="sku_name">{{item.name}}</view>
 			<view class="sku_values">
-				<view class="sku_value {{item1.value==item.selectedValue?'active':''}}" wx:for="{{item.values}}" wx:for-item="item1" wx:key="id" bind:tap="handleSkuChange" data-attrName="{{item.name}}" data-attrValue="{{item1.value}}">{{item1.value}}</view>
+				<view 
+				class="sku_value {{item1.value==item.selectedValue?'active':''}}" 
+				wx:for="{{item.values}}" 
+				wx:for-item="item1" 
+				wx:key="id" 
+				bind:tap="handleSkuChange" 
+				data-attrName="{{item.name}}" 
+				data-attrValue="{{item1.value}}"
+				data-index="{{index}}">{{item1.value}}</view>
 
 			</view>
 		</view>

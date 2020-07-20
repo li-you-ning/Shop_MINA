@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -76,14 +76,14 @@
 					"id": 1,
 					"name": "商品列表",
 					"pathName": "pages/goods_list/goods_list",
-					"query": "KeyWords=小米",
+					"query": "KeyWords=测试8",
 					"scene": null
 				},
 				{
 					"id": 2,
 					"name": "商品详情",
 					"pathName": "pages/goods_detail/goods_detail",
-					"query": "ID=9791",
+					"query": "ID= 57450",
 					"scene": null
 				},
 				{
