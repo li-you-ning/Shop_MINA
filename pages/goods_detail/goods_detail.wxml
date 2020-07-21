@@ -48,8 +48,19 @@
 				data-attrName="{{item.name}}" 
 				data-attrValue="{{item1.value}}"
 				data-index="{{index}}">{{item1.value}}</view>
-
+			</view>
+		</view>
+		<view class="sku-num">
+			<text>购买数量</text>
+			<view>
+				<view bindtap="handleItemNumEdit" data-operation="{{-1}}">-</view>
+				<view>{{num}}</view>
+				<view bindtap="handleItemNumEdit" data-operation="{{1}}">+</view>
 			</view>
 		</view>
 	</view>
+
+	<btmTool bindshowSku="showSku"></btmTool>
 </van-popup>
+
+<btmTool bindshowSku="showSku"></btmTool>

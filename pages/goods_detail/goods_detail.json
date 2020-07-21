@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "van-popup": "@vant/weapp/popup/index"
+    "van-popup": "@vant/weapp/popup/index",
+    "btmTool":"../../components/btmTool/btmTool"
   },
   "navigationBarTitleText":"商品详情"
 }
