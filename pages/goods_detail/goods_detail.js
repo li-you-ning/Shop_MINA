@@ -188,6 +188,7 @@ Page({
         price = v.Price;
         skus[0].selectSkuNum = v.SkuNum;
         skus[0].selectPrice=v.Price;
+        
       }
     });
 

@@ -21,25 +21,24 @@ Page({
   //接口的返回数据
   Cates: [],
 
-
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面显示
    */
-  onLoad: function (options) {
+  onShow: function () {
     /*
-    0 web中本地存储和 小程序中的本地存储的区别
-      1写代码的方式不一样了
-      web: localStorage . setItem ( "key"，"value") localStorage . getItem( "key" )
-      小程序中: wx . setStorageSync("key", "value"); wWx . getStorageSync("key");
-      2:存的时候有没有做类型转换
-      web:不管存入的是什么类型的数据，最终都会先调用以下toString(), 把数据变成了字符串再存入进去
-      小程序:不存在类型转换的这个操作存什么类似的数据进去，获取的时候就是什么类型
-
-     1 先判断一下本地储存中有没有旧的数据
-     {time:Data.now(),data:[...]}
-     2 没有旧的数据 直接发送新请求
-     3 有旧的数据 同时 旧的数据也没有过期 就使用 本地储存中的旧数据即可
-     */
+        0 web中本地存储和 小程序中的本地存储的区别
+          1写代码的方式不一样了
+          web: localStorage . setItem ( "key"，"value") localStorage . getItem( "key" )
+          小程序中: wx . setStorageSync("key", "value"); wWx . getStorageSync("key");
+          2:存的时候有没有做类型转换
+          web:不管存入的是什么类型的数据，最终都会先调用以下toString(), 把数据变成了字符串再存入进去
+          小程序:不存在类型转换的这个操作存什么类似的数据进去，获取的时候就是什么类型
+    
+         1 先判断一下本地储存中有没有旧的数据
+         {time:Data.now(),data:[...]}
+         2 没有旧的数据 直接发送新请求
+         3 有旧的数据 同时 旧的数据也没有过期 就使用 本地储存中的旧数据即可
+         */
 
     //1 获取本地存储中的数据（小程序中也是存在本地储存的）
     const Cates = wx.getStorageSync("cates");
@@ -70,6 +69,13 @@ Page({
         })
       }
     }
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
 
 
   },
@@ -146,12 +152,7 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
-  },
 
   /**
    * 生命周期函数--监听页面隐藏

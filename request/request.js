@@ -1,13 +1,14 @@
 
 // 同时发送异步代码的次数
 let ajaxTimes = 0;
+
 export const request = (params) => {
-  // 判断 url中是否带有 /my/ 请求的是私有的路径 带上header token
-  let header = { ...params.header };
-  if (params.url.includes("/my/")) {
-    // 拼接header 带上token
-    header["Authorization"] = wx.getStorageSync("token");
-  }
+  // // 判断 url中是否带有 /my/ 请求的是私有的路径 带上header token
+  // let header = { ...params.header };
+  // if (params.url.includes("/my/")) {
+  //   // 拼接header 带上token
+  //   header["Authorization"] = wx.getStorageSync("token");
+  // }
 
 
   ajaxTimes++;
@@ -19,6 +20,17 @@ export const request = (params) => {
 
   // 定义公共的url
   const baseUrl = "http://localhost:61798/api";
+
+  let header = {
+    'content-type': 'application/json'
+  }
+
+  let token = wx.getStorageSync("token");
+  if (token) {
+    header['Authorization'] = token
+  }
+  console.log(header)
+
   return new Promise((resolve, reject) => {
     wx.request({
       ...params,
@@ -40,23 +52,3 @@ export const request = (params) => {
     });
   })
 }
-
-
-
-
-// export const request = (params) => {
-//     // 定义公共的url
-//     // const baseUrl = "http://localhost:61798/api";
-//     return new Promise((resolve, reject) => {
-//         wx.request({
-//             ...params,
-//             // url:baseUrl+params.url,
-//             success: (result) => {
-//                 resolve(result);
-//             },
-//             fail: (err) => {
-//                 reject(err);
-//             }
-//         });
-//     })
-// }
