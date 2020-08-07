@@ -14,21 +14,28 @@ Page({
       console.log(code);
 
       //  3 发送请求 获取用户的token
-      const token = await request({
+      const {Token,RefreshToken,Expire} = await request({
         url: "/auth/getToken",
         data: { userInfo: userInfo, code },
         method: "post"
       });
 
-      console.log(token);
+      console.log("token:"+Token);
+      console.log("refreshToken:"+RefreshToken);
 
       // 4 把token存入缓存中 同时跳转回上一个页面
-      wx.setStorageSync("token", token);
+      wx.setStorageSync("token", {time: Date.now(),token:Token});
+      wx.setStorageSync("refreshToken", {time: Date.now(),refreshToken:RefreshToken,expire:Expire});
 
-      await request({
+      const ok = await request({
         url:"/auth/test",
         method:"get"
       })
+      if (ok==="Auth OK") {
+        wx.navigateTo({
+          url: '/pages/pay/pay'
+        });
+      }
 
     } catch (error) {
       console.log(error);

@@ -27,7 +27,7 @@ export const request = (params) => {
 
   let token = wx.getStorageSync("token");
   if (token) {
-    header['Authorization'] = token
+    header['Authorization'] = token.token
   }
   console.log(header)
 
@@ -37,9 +37,71 @@ export const request = (params) => {
       header: header,
       url: baseUrl + params.url,
       success: (result) => {
-        resolve(result.data.Data);
+        console.log(result);
+
+        if (result.statusCode == 200) {
+          if (result.data.Data == null) {
+            resolve(result.data);
+          }
+          resolve(result.data.Data);
+        }
+        else if (result.statusCode == 401) {
+          //获取refreshToken
+          const refreshToken = wx.getStorageSync('refreshToken');
+          if (Date.now() - refreshToken.time > refreshToken.expire) {//refreshToken过期
+
+            wx.navigateTo({
+              url: '/pages/auth/auth'
+            });
+            return
+          }
+          else {
+
+            //刷新token
+            wx.request({
+              url: baseUrl + '/auth/getTokenByRefreshToken',
+              data: { rToken: refreshToken.refreshToken },
+              header: { 'content-type': 'application/json' },
+              method: 'GET',
+              success: (result) => {
+                console.log(result)
+
+                if (result.data.Code==500) {
+                  wx.navigateTo({
+                    url: '/pages/auth/auth'
+                  });
+                  return
+                }
+
+                wx.setStorageSync("token", { time: Date.now(), token: result.data.Data.Token });
+                wx.setStorageSync("refreshToken", { time: Date.now(), refreshToken: result.data.Data.RefreshToken, expire: result.data.Data.Expire });
+
+                //携带新的token重新发起请求
+                var reqTask = wx.request({
+                  ...params,
+                  url: baseUrl + params.url,
+                  header: {
+                    'content-type': 'application/json',
+                    'Authorization': result.data.Data.Token
+                  },
+                  success: (result) => {
+                    if (result.data.Data == null) {
+                      resolve(result.data);
+                    }
+                    resolve(result.data.Data);
+                  }
+                });
+              }
+            });
+          }
+
+
+        }
+
+
       },
       fail: (err) => {
+        console.log(err)
         reject(err);
       },
       complete: () => {

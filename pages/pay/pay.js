@@ -108,6 +108,11 @@ Page({
       });
 
       console.log(order_number)
+      if (order_number==="签名已过期"||order_number==="签名无效") {
+        wx.navigateTo({
+          url: '/pages/auth/auth'
+        });
+      }
 
 
     } catch (error) {
